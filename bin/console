@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+
+<?php
+if (!$loader = include __DIR__.'/../vendor/autoload.php') {
+    die('You must set up the project dependencies. `composer install` noob.');
+}
+$app = new \Application;
+$app->boot();
+$app->run();
