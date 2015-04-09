@@ -24,6 +24,11 @@
 -------------------------------------------------------------------------------------------------------------------- */
 nav {
     ul {
+        @extend .card;
+        @extend .card__content;
+
+        background-color: white;
+
         list-style: none;
         padding: 0;
 
@@ -35,6 +40,10 @@ nav {
                 display: block;
                 height: 100%;
                 color: inherit;
+
+                &, &:focus, &:hover, &:active, &:focus:hover {
+                    text-decoration: none;
+                }
             }
         }
     }

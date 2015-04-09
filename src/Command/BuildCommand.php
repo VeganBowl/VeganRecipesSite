@@ -3,6 +3,10 @@
 namespace Command;
 
 use Cilex\Command\Command;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
+use Imagine\Image\ImagineInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -28,6 +32,7 @@ class BuildCommand extends Command
         $finder     = new Finder();
         $parser     = $container['article_parser'];
         $recipes    = [];
+        $allLangs   = [];
 
         // Initialize build directory
         $fs->mkdir($container['build_dir']);
@@ -53,41 +58,82 @@ class BuildCommand extends Command
 
                 if (preg_match('#index.([a-z]+).md#', $fileName, $match)) {
                     $lang = $match[1];
-                    $recipes[$recipeGenericName][$lang] = $recipeFile;
+                    $recipes[$recipeGenericName][$lang] = [
+                        'file'  => $recipeFile,
+                        'name'  => $recipeDir->getRelativePathname(),
+                    ];
                 }
-            }
-
-            $mainPicture = null;
-            if ($fs->exists($recipePath.'/main.jpg')) {
-                $fs->copy($recipePath.'/main.jpg', $container['build_dir'].'/'.$recipeDir->getRelativePathname().'/main.jpg');
-                $mainPicture = 'main.jpg';
             }
 
             // Generate recipe in all languages
             foreach ($recipes[$recipeGenericName] as $lang => $recipeFile) {
-                    $content = $recipeFile->getContents();
+                $allLangs[] = $lang;
 
-                    $langs = array_keys($recipes[$recipeGenericName]);
-                    unset($langs[array_search($lang, $langs)]);
+                $mainPicture = null;
+                if ($fs->exists($recipePath.'/main.jpg')) {
 
-                    $data = $parser->parse($content);
-                    $html = $container['twig']->render('recipe.html.twig', [
-                        'content'       => $data['content'],
-                        'meta'          => $data['frontMatter'],
-                        'langs'         => $langs,
-                        'mainPicture'   => $mainPicture,
-                    ]);
+                    $imagine = new Imagine();
+                    $image = $imagine->open($recipePath.'/main.jpg');
+                    $thumbnail = $image->thumbnail(new Box(900, 600), ImageInterface::THUMBNAIL_OUTBOUND);
+                    $fs->mkdir($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname());
+                    $thumbnail->save($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/main.jpg');
 
-                    $fs->mkdir($container['build_dir'].'/'.$recipeDir->getRelativePathname(), 0777);
-                    $fs->dumpFile($container['build_dir'].'/'.$recipeDir->getRelativePathname().'/index.'.$lang.'.html', $html);
+//                    $fs->copy($recipePath.'/main.jpg', $container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/main.jpg');
+                    $mainPicture = 'main.jpg';
+
+                    $recipes[$recipeGenericName][$lang]['mainPicture'] = $mainPicture;
+                }
+
+                $content = $recipeFile['file']->getContents();
+
+                $langs = array_keys($recipes[$recipeGenericName]);
+                unset($langs[array_search($lang, $langs)]);
+
+                $data = $parser->parse($content);
+                $html = $container['twig']->render('recipe.html.twig', [
+                    'content'       => $data['content'],
+                    'meta'          => $data['frontMatter'],
+                    'langs'         => $langs,
+                    'lang'          => $lang,
+                    'recipes'       => $recipes[$recipeGenericName],
+                    'mainPicture'   => $mainPicture,
+                ]);
+
+                $recipes[$recipeGenericName][$lang]['title'] = $data['frontMatter']['title'];
+
+                $fs->mkdir($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname(), 0777);
+                $fs->dumpFile($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/index.html', $html);
             }
 
-//            if (!$fs->exists($recipePath.'/index.en.md')) {
-//                $output->writeln(
-//                    sprintf('ERROR : recipe not found in %s', $recipePath)
-//                );
-//                die();
-//            }
+            $allLangs = array_unique($allLangs);
+
+            // Homes generation
+            foreach ($allLangs as $lang) {
+                $otherLanguages = $allLangs;
+                unset($otherLanguages[array_search($lang, $otherLanguages)]);
+
+                $recipesForThisLang = $recipes;
+                foreach ($recipes as $recipeName => $recipe) {
+                    if (!isset($recipe[$lang])) {
+                        unset($recipesForThisLang[$recipeName]);
+                    }
+                }
+
+                $fs->dumpFile($container['build_dir'].'/'.$lang.'/index.html', $container['twig']->render('index.html.twig', [
+                    'recipes'   => $recipesForThisLang,
+                    'lang'      => $lang,
+                    'langs'     => $otherLanguages,
+                ]));
+            }
+
+            // Translation pages generation
+            foreach ($allLangs as $lang) {
+                $fs->dumpFile($container['build_dir'].'/'.$lang.'/translation-state.html', $container['twig']->render('translationState.html.twig', [
+                    'recipes'   => $recipes,
+                    'lang'      => $lang,
+                    'langs'     => $allLangs,
+                ]));
+            }
         }
 
         $output->writeln('Page generation done');

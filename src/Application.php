@@ -28,7 +28,9 @@ class Application extends \Cilex\Application
         ));
 
         $this['twig'] = $this->share($this->extend('twig', function ($twig, $this) {
+            $twig->addGlobal('base_url', 'file:///home/laurent/work/VeganRecipesSite/build');
             $twig->addExtension(new Twig\LanguageExtension($this));
+            $twig->addExtension(new Twig_Extension_Debug());
 
             return $twig;
         }));

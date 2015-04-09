@@ -11,7 +11,9 @@
         "symfony/finder": "~2.6",
         "twig/twig": "~1.18",
         "roderik/cilex-twig": "~1.0",
-        "symfony/intl": "~2.6"
+        "symfony/intl": "~2.6",
+        "cocur/slugify": "~1.1",
+        "imagine/imagine": "0.6.*"
     },
     "config": {
         "bin-dir": "bin"
