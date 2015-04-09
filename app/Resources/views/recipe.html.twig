@@ -3,12 +3,14 @@
 {% block main %}
     <h1>{{ meta.title }}</h1>
 
+    {% if langs|length > 0 %}
     <p>
         Find also this recipe in:&nbsp;
         {% for lang in langs %}
             <a href="{{ base_url }}/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
         {% endfor %}
     </p>
+    {% endif %}
 
     <div class="row">
         <div class="medium-8 column" style="padding-left: 0;">
