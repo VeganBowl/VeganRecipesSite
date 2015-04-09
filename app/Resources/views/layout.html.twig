@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <!-- FONTS -->
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower|Raleway:400,300|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600' rel='stylesheet' type='text/css'>
+
+    <!-- BASE.CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/main/main.css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="contentWrapper">
+        <header>
+            <img src="../assets/images/bowl.png" alt=""/>
+            <h1>VeganBowl recipes</h1>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a class="button--link" href="#"><i class="fa fa-home"></i></a></li>
+                <li><a class="button--link" href="#">Recipes</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer>
+            Footer
+        </footer>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    {#<script src="#"></script>#}
+{% endblock %}

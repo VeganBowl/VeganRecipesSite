@@ -1,0 +1,101 @@
+/**
+ *  Font loader
+ */
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+/*
+example:
+
+$fonts: (
+    (
+        'familyName': 'Arial',
+        'fileBaseName': 'Arial-Std',
+        'fileExtensions': ('eot', 'otf', 'woff', 'ttf', 'svg'),
+    )
+);
+*/
+$fonts:           () !default;
+$fontsPath:       'fonts/' !default;
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PLACEHOLDERS
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------------------------
+  MIXINS
+-------------------------------------------------------------------------------------------------------------------- */
+@function to-string($list, $glue: '', $is-nested: false) {
+    $result: null;
+
+    @for $i from 1 through length($list) {
+        $e: nth($list, $i);
+
+        @if type-of($e) == list {
+            $result: $result#{to-string($e, $glue, true)};
+        }
+
+        @else {
+            $result: if($i != length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+        }
+    }
+
+    @return $result;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------
+  RULES
+-------------------------------------------------------------------------------------------------------------------- */
+@if str-slice($fontsPath, -1, -1) != '/' {
+    $fontsPath: $fontsPath + '/';
+}
+
+@each $fontData in $fonts {
+    // should have key 'familyName'
+    @if not map_has_key($fontData, 'familyName') {
+        @error "Family name undefined for entry.";
+    }
+    $familyName: map-get($fontData, 'familyName');
+
+    // should have key 'fileBaseName', otherwise family name is used
+    $fileBaseName: $familyName;
+
+    @if map_has_key($fontData, 'fileBaseName') {
+        $fileBaseName: map-get($fontData, 'fileBaseName');
+    }
+
+    // construct css declaration
+    $fontRules: ();
+    $fileExtensions: map-get($fontData, 'fileExtensions');
+    $fontWeight: map-get($fontData, 'weight');
+    $fontStyle: map-get($fontData, 'style');
+
+    @if index($fileExtensions, 'eot') != false {
+        $fontRules: append($fontRules, 'url("#{$fontsPath}#{$fileBaseName}.eot#iefix") format("embedded-opentype")');
+    }
+
+    @if index($fileExtensions, 'woff') != false {
+        $fontRules: append($fontRules, 'url("#{$fontsPath}#{$fileBaseName}.woff") format("woff")');
+    }
+
+    @if index($fileExtensions, 'ttf') != false {
+        $fontRules: append($fontRules, 'url("#{$fontsPath}#{$fileBaseName}.ttf") format("truetype")');
+    }
+
+    @if index($fileExtensions, 'svg') != false {
+        $fontRules: append($fontRules, 'url("#{$fontsPath}#{$fileBaseName}.svg") format("svg")');
+    }
+
+    @font-face {
+        font-family: '#{$familyName}';
+        @if index($fileExtensions, 'eot') != false {
+            src: url("#{$fontsPath}#{$fileBaseName}.eot");
+        }
+        src: to-string($fontRules, ',');
+        font-weight: $fontWeight;
+        font-style: $fontStyle;
+    }
+}
+

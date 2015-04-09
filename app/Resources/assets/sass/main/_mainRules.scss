@@ -1,0 +1,35 @@
+a,
+a:visited,
+a:focus {
+    color: black;
+    text-decoration: none;
+
+    &:hover, &.active {
+        text-decoration: underline;
+//        font-weight: bold;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Raleway', sans-serif;
+    color: #444;
+}
+
+h1 {
+    font-size: rem-calc(40px);
+    line-height: 1.2;
+    font-weight: 300;
+    font-style: normal;
+    font-variant: normal;
+}
+
+li.languageSelector--big {
+    height: auto !important;
+    ul {
+        padding: 0;
+
+        a {
+            padding: 1em 2em !important;
+        }
+    }
+}

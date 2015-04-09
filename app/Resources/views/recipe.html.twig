@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+    <h1>{{ meta.title }}</h1>
+
+    <p>
+        Find also this recipe in:&nbsp;
+        {% for lang in langs %}
+            <a href="index.{{ lang }}.html">{{ lang|langName }}</span></a>&nbsp;
+        {% endfor %}
+    </p>
+
+
+    <div class="row">
+        <div class="medium-8 column" style="padding-left: 0;">
+            {% if mainPicture is defined %}
+                <img class="card" src="{{ mainPicture }}" alt=""/>
+            {% endif %}
+
+            <div class="recipe">
+                {{ content|raw }}
+            </div>
+        </div>
+        <div class="medium-4 column" style="padding-right: 0;">
+            <div class="sticker">
+                <div class="sticker__content">{{ meta.cooking_time }} min.</div>
+                <div class="sticker__head">Cooking Time</div>
+            </div>
+            <div class="sticker">
+                <div class="sticker__content">{{ meta.preparation_time }} min.</div>
+                <div class="sticker__head">Preparation Time</div>
+            </div>
+            <div class="sticker">
+                <div class="sticker__content">{{ meta.nb_persons }} pers.</div>
+                <div class="sticker__head">Serves</div>
+            </div>
+            <div class="sticker">
+                <div class="sticker__content">{{ meta.price_per_person }}</div>
+                <div class="sticker__head">Average price per person</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

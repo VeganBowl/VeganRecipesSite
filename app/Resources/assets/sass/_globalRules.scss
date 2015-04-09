@@ -1,0 +1,44 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+
+    font-family: 'Open Sans', sans-serif;
+    color: #5E5A5A;
+
+    background: url('../../images/square_bg.png') repeat;
+}
+
+.contentWrapper{
+    padding: 1em 2em 0 2em;
+    color: $text-color-standard;
+
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+    *zoom: 1;
+}

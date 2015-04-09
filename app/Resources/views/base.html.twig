@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>VeganBowl - {% block title %}Welcome!{% endblock %}</title>
+
+    {% if pageDescription is defined %}
+        <meta name="description" content="{{ pageDescription }}">
+    {% endif %}
+
+    {% if pageKeywords is defined %}
+        <meta name="keywords" content="{{ pageKeywords }}">
+    {% endif %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block stylesheets %}{% endblock %}
+
+    {#<link rel="icon" type="image/x-icon" href="#" />#}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascript %}{% endblock %}
+</body>
+</html>

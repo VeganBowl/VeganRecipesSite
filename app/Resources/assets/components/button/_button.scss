@@ -1,0 +1,108 @@
+/**
+ *  Buttons
+ *
+ *  Automatically generates button mixins
+ *
+ */
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+$button-style-list:         () !default;
+$button-size-list:          () !default;
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PLACEHOLDERS
+-------------------------------------------------------------------------------------------------------------------- */
+%borderBox {
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------
+  MIXINS
+-------------------------------------------------------------------------------------------------------------------- */
+@mixin btn($bg-color) {
+    display: inline-block;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darken($bg-color, 5%);
+    padding: 0 1em;
+
+    color: if(lightness($bg-color) > 80%, #4d4d4d, white) !important;
+    font-weight: normal !important;
+
+    transition: 0.5s ease;
+
+    border-radius: 2px;
+    outline: 0;
+
+    background-color: $bg-color;
+
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+    &:focus {
+        color: if(lightness($bg-color) > 80%, #4d4d4d, white) !important;
+        font-weight: normal !important;
+    }
+
+    &:hover {
+        color: if(lightness($bg-color) > 80%, #4d4d4d, white) !important;
+        font-weight: normal !important;
+//        color: if(lightness(darken($bg-color, 10%)) > 80%, #4d4d4d, white);
+        background-color: $bg-color;
+
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    }
+    &:active, &.active {
+        transition: none;
+        color: if(lightness(lighten($bg-color, 10%)) > 80%, #4d4d4d, white) !important;
+        font-weight: normal !important;
+        background-color: lighten($bg-color, 10%);
+    }
+}
+
+@mixin btn-size($size) {
+    font-size:      $size;
+    height:         $size * 2.5;
+    line-height:    $size * 2.5;
+    padding:        0 $size;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------
+  RULES
+-------------------------------------------------------------------------------------------------------------------- */
+@each $button-name, $button-color in $button-style-list {
+    .button--#{$button-name} {
+        @include btn($button-color);
+        @extend %borderBox;
+
+        text-decoration: none;
+    }
+}
+
+.button--link {
+    @include btn(transparent);
+    color: inherit !important;
+    box-shadow: none;
+    border: none;
+
+    &:hover, &:focus {
+        box-shadow: none;
+        color: inherit !important;
+    }
+
+    &:active, &.active {
+        transition: none;
+//        color: if(lightness(darken(white, 10%)) > 80%, #4d4d4d, white) !important;
+        color: inherit !important;
+        background-color: darken(white, 10%);
+    }
+}
+
+@each $size-name, $size in $button-size-list {
+    .button--#{$size-name} {
+        @include btn-size($size);
+    }
+}

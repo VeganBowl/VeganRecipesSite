@@ -9,11 +9,28 @@ class Application extends \Cilex\Application
     {
         parent::__construct(self::NAME, self::VERSION);
         $this['build_dir'] = __DIR__.'/../build';
+        $this['recipes_dir'] = __DIR__.'/../recipes/recipes';
     }
 
     public function boot()
     {
         // Commands
         $this->command(new \Command\PreviewCommand);
+        $this->command(new \Command\BuildCommand);
+
+        // Services
+        $this['article_parser'] = function() {
+            return new \Service\ArticleParser();
+        };
+
+        $this->register(new \Cilex\Provider\TwigServiceProvider(), array(
+            'twig.path' => __DIR__.'/../app/Resources/views',
+        ));
+
+        $this['twig'] = $this->share($this->extend('twig', function ($twig, $this) {
+            $twig->addExtension(new Twig\LanguageExtension($this));
+
+            return $twig;
+        }));
     }
 }

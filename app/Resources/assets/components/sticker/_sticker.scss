@@ -1,0 +1,59 @@
+/**
+ *  Sticker
+ */
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+$sticker-main-bg-color:     #F4716A !default;
+$sticker-main-color:        white !default;
+$sticker-second-bg-color:   white !default;
+$sticker-second-color:      #444 !default;
+$sticker-font:              'Arial', sans-serif !default;
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PLACEHOLDERS
+-------------------------------------------------------------------------------------------------------------------- */
+%borderBox {
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------
+  MIXINS
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------------------------
+  RULES
+-------------------------------------------------------------------------------------------------------------------- */
+.sticker {
+    @extend .card;
+    font-family: $sticker-font;
+    font-size: rem-calc(14px);
+}
+
+.sticker__head,
+.sticker__content {
+    padding: 0.5em;
+}
+
+.sticker__head {
+    background-color: $sticker-main-bg-color;
+    color: $sticker-main-color;
+    font-weight: 300;
+}
+
+.sticker__content {
+    background-color: $sticker-second-bg-color;
+    color: $sticker-second-color;
+    width: 30%;
+    text-align: center;
+
+    float: right;
+    margin: 0 0 0 0.5em;
+}
+
+.sticker.sticker--contentLeft .sticker__content{
+    float: left;
+    margin: 0 0.5em 0 0;
+}

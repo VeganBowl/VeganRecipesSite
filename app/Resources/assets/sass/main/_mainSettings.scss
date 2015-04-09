@@ -1,0 +1,85 @@
+/* --------------------------------------------------------------------------------------------------------------------
+  GLOBAL PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+// rem base reference for `rem-calc` mixin
+$global-rem-base:           16px !default;
+
+$global-ie6-support:        false;
+$global-ie7-support:        false;
+
+/* --------------------------------------------------------------------------------------------------------------------
+  COMPONENTS PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+$color-theme:		skyblue;
+
+$color-theme-1:		#6C7068;//operarat black
+$color-theme-2:		#9D5C56;//ivan
+$color-theme-3:		#CE4745;//tsarevitch
+$color-theme-4:		#FF3333;//deep red
+$color-theme-5:		#8F6951;//closed rose
+
+$color-standard: 	$color-theme-2/*#f3f3f3*/;
+$color-success: 	#97d899;
+$color-info: 		#c1d6db;
+$color-alert: 		#e08e7a;
+$color-warning: 	#ffd27f;
+
+$text-color-standard: #777;
+
+$rem-base:			16px !default;
+
+$site_title_font: 'Gabriela', sans-serif;
+$home_background_image: none;
+
+
+/* --------------------------------------------------------
+  BUTTON
+-------------------------------------------------------- */
+$button-style-list: (
+        standard:   #313541,
+        success:    #77D193,
+        warning:    #EA5A5A,
+        info:       #94B9AF,
+        none:       white,
+);
+
+$button-size-list: (
+        tiny:   0.8em,
+        small:  0.9em,
+        medium: 1em,
+        large:  1.1em,
+);
+
+/* --------------------------------------------------------
+  CARD
+-------------------------------------------------------- */
+$card-style-list: (
+        standard:   #313541,
+        success:    #77D193,
+        warning:    #EA5A5A,
+        info:       #94B9AF,
+);
+
+/* --------------------------------------------------------
+  STICKER
+-------------------------------------------------------- */
+$sticker-main-bg-color:     #F4716A !default;
+$sticker-main-color:        white !default;
+$sticker-second-bg-color:   white !default;
+$sticker-second-color:      #444 !default;
+$sticker-font:              'Raleway', sans-serif !default;
+
+/* --------------------------------------------------------
+  FONT
+-------------------------------------------------------- */
+//$fontsPath: '../../fonts';
+//$fontsExtensions: ('eot', 'otf', 'woff', 'ttf', 'svg', 'woff2');
+//$fonts: (
+//    (
+//        'familyName': 'Airplane',
+//        'fileBaseName': 'Airplane/Airplane',
+//        'fileExtensions': $fontsExtensions,
+//        'weight': normal,
+//        'style': normal,
+//    ),
+//);
