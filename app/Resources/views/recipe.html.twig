@@ -7,7 +7,7 @@
     <p>
         Find also this recipe in:&nbsp;
         {% for lang in langs %}
-            <a href="{{ base_url }}/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
+            <a href="/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
         {% endfor %}
     </p>
     {% endif %}

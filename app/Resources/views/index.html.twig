@@ -8,10 +8,10 @@
             <article style="box-sizing: border-box;width: 33%;float: left;padding: 0 1em 0 0;">
                 <div class="card">
                     <div class="card__title" style="background-color: white;">
-                        <a style="width: 100%;padding: 0;" class="button--link" href="{{ base_url }}/{{ lang }}/{{ recipe[lang]['name'] }}/index.html">{{ recipe[lang]['title'] }}</a>
+                        <a style="width: 100%;padding: 0;" class="button--link" href="/{{ lang }}/{{ recipe[lang]['name'] }}/">{{ recipe[lang]['title'] }}</a>
                     </div>
                     <div class="card__container">
-                        <img src="{{ base_url }}/{{ lang }}/{{ recipe[lang]['name'] }}/{{ recipe[lang]['mainPicture'] }}" alt=""/>
+                        <img src="/{{ lang }}/{{ recipe[lang]['name'] }}/{{ recipe[lang]['mainPicture'] }}" alt=""/>
                     </div>
                 </div>
             </article>
@@ -21,7 +21,7 @@
     <p style="margin-top: 2em;">
         Find also recipes in:&nbsp;
         {% for lang in langs %}
-            <a href="{{ base_url }}/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
+            <a href="/{{ lang }}/{{ recipes[lang]['name'] }}">{{ lang|langName }}</span></a>&nbsp;
         {% endfor %}
     </p>
 {% endblock %}
