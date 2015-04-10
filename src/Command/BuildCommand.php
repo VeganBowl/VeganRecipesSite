@@ -56,7 +56,7 @@ class BuildCommand extends Command
             foreach ($recipeFinder as $recipeFile) {
                 $fileName = pathinfo($recipeFile->getRealpath())['basename'];
 
-                if (preg_match('#index.([a-z]+).md#', $fileName, $match)) {
+                if (preg_match('#index\.([a-z]+)\.md#', $fileName, $match)) {
                     $lang = $match[1];
                     $recipes[$recipeGenericName][$lang] = [
                         'file'  => $recipeFile,

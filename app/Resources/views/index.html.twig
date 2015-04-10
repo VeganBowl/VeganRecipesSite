@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block main %}
-    <h1>Recipes</h1>
+    <h1>{{ 'menu.recipes'|trans(lang) }}</h1>
 
     <div class="row">
         {% for recipe in recipes %}
@@ -20,7 +20,7 @@
 
     {% if langs|length > 0 %}
         <p style="margin-top: 2em;">
-            Find also recipes in:&nbsp;
+            {{ 'interface.find_recipes_in'|trans(lang) }}&nbsp;
             {% for lang in langs %}
                 <a href="/{{ lang }}/{{ recipes[lang]['name'] }}">{{ lang|langName }}</span></a>&nbsp;
             {% endfor %}

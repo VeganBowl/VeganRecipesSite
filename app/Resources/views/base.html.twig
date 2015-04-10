@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>VeganBowl - {% block title %}Welcome!{% endblock %}</title>
+    <title>VeganBowl{% block title %}{% endblock %}</title>
 
     {% if pageDescription is defined %}
         <meta name="description" content="{{ pageDescription }}">

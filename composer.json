@@ -14,7 +14,10 @@
         "roderik/cilex-twig": "~1.0",
         "symfony/intl": "~2.6",
         "cocur/slugify": "~1.1",
-        "imagine/imagine": "0.6.*"
+        "imagine/imagine": "0.6.*",
+        "lwiesel/cilex-translator": "dev-master",
+        "symfony/translation": "~2.6",
+        "symfony/config": "~2.6"
     },
     "config": {
         "bin-dir": "bin"

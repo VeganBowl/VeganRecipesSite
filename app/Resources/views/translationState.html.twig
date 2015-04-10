@@ -104,13 +104,13 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Translation state</h1>
+    <h1>{{ 'menu.translation_state'|trans(lang) }}</h1>
 
     <table>
         <thead>
             <tr>
                 <td>
-                    Name
+                    {{ 'interface.recipe_name'|trans(lang) }}
                 </td>
                 {% for lang in langs %}
                     <td>

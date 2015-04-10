@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb6964d46a068c2fd20fc028be8e3dc7",
+    "hash": "3eb2992a87caffff3192a6faf8f7d47a",
     "packages": [
         {
             "name": "cilex/cilex",
@@ -327,6 +327,51 @@
             "time": "2014-11-11 11:36:02"
         },
         {
+            "name": "lwiesel/cilex-translator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lwiesel/cilex-translator.git",
+                "reference": "5ea58621daaa6cd4d0219befa3f2d18a33b07619"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lwiesel/cilex-translator/zipball/5ea58621daaa6cd4d0219befa3f2d18a33b07619",
+                "reference": "5ea58621daaa6cd4d0219befa3f2d18a33b07619",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cilex": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Laurent Wiesel",
+                    "email": "wiesel.laurent@gmail.com"
+                }
+            ],
+            "description": "The Translator provider from Silex for Cilex",
+            "keywords": [
+                "cilex",
+                "provider",
+                "translator"
+            ],
+            "time": "2015-04-10 21:15:41"
+        },
+        {
             "name": "pimple/pimple",
             "version": "v1.1.1",
             "source": {
@@ -417,6 +462,57 @@
                 "twig"
             ],
             "time": "2015-04-07 09:13:40"
+        },
+        {
+            "name": "symfony/config",
+            "version": "v2.6.6",
+            "target-dir": "Symfony/Component/Config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Config.git",
+                "reference": "d91be01336605db8da21b79bc771e46a7276d1bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/d91be01336605db8da21b79bc771e46a7276d1bc",
+                "reference": "d91be01336605db8da21b79bc771e46a7276d1bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/filesystem": "~2.3"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-03-30 15:54:10"
         },
         {
             "name": "symfony/console",
@@ -703,6 +799,65 @@
             "time": "2015-03-30 15:54:10"
         },
         {
+            "name": "symfony/translation",
+            "version": "v2.6.6",
+            "target-dir": "Symfony/Component/Translation",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Translation.git",
+                "reference": "bd939f05cdaca128f4ddbae1b447d6f0203b60af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Translation/zipball/bd939f05cdaca128f4ddbae1b447d6f0203b60af",
+                "reference": "bd939f05cdaca128f4ddbae1b447d6f0203b60af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.3,>=2.3.12",
+                "symfony/intl": "~2.3",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/yaml": "~2.2"
+            },
+            "suggest": {
+                "psr/log": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Translation\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "http://symfony.com",
+            "time": "2015-03-30 15:54:10"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v2.6.6",
             "target-dir": "Symfony/Component/Yaml",
@@ -813,7 +968,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lwiesel/cilex-translator": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
