@@ -28,7 +28,7 @@ chmod-build:
 	@sudo chmod -R 755 build
 
 serve:
-	@php -S localhost:8000 -t build/
+	@$(compose) up server
 
 # Meta commands
 build: deleteBuild update-recipes build-pages assets-install chmod-build

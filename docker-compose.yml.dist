@@ -5,6 +5,15 @@ app:
         - .:/srv
         - /var/composer:/root/.composer
 
+server:
+    build: docker/app
+    command: php -S 0.0.0.0:8000 -t build/
+    working_dir: /srv
+    volumes:
+        - .:/srv
+    ports:
+        - "8000:8000"
+
 node:
     build: docker/node
     working_dir: /srv
