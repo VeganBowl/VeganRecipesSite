@@ -5,7 +5,7 @@
 
     {% if langs|length > 0 %}
     <p>
-        {{ 'interface.find_this_recipe_in'|trans(lang) }}:&nbsp;
+        {{ 'interface.find_this_recipe_in'|trans(lang) }}&nbsp;
         {% for lang in langs %}
             <a href="/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
         {% endfor %}

@@ -1,6 +1,6 @@
 interface:
-    find_recipes_in:      Trouvez aussi des recettes en
-    find_this_recipe_in:  Trouvez aussi cette recette en
+    find_recipes_in:      Trouvez aussi des recettes en :
+    find_this_recipe_in:  Trouvez aussi cette recette en :
     recipe_name:          Nom
     recipe:
         cooking_time:     Temps de cuisson
