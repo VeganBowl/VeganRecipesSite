@@ -27,11 +27,13 @@ assets-install:
 chmod-build:
 	@sudo chmod -R 755 build
 
+serve:
+	@php -S localhost:8000 -t build/
+
 # Meta commands
 build: deleteBuild update-recipes build-pages assets-install chmod-build
 
-preview:
-	@bin/console preview
+preview: build serve
 
 # Open cli
 cli-app:

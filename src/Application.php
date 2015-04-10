@@ -15,7 +15,6 @@ class Application extends \Cilex\Application
     public function boot()
     {
         // Commands
-        $this->command(new \Command\PreviewCommand);
         $this->command(new \Command\BuildCommand);
 
         // Services
@@ -28,7 +27,7 @@ class Application extends \Cilex\Application
         ));
 
         $this['twig'] = $this->share($this->extend('twig', function ($twig, $this) {
-            $twig->addGlobal('base_url', 'file:///home/laurent/work/VeganRecipesSite/build');
+            $twig->addGlobal('base_url', 'http://localhost:8000');
             $twig->addExtension(new Twig\LanguageExtension($this));
             $twig->addExtension(new Twig_Extension_Debug());
 
