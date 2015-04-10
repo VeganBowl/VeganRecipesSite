@@ -4,6 +4,7 @@
         "psr-4": { "": "src/" }
     },
     "require": {
+        "ext-gd": "*",
         "erusev/parsedown-extra": "0.7.*",
         "symfony/yaml": "~2.6",
         "cilex/cilex": "~1.1",
@@ -17,5 +18,11 @@
     },
     "config": {
         "bin-dir": "bin"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "git clone https://github.com/VeganBowl/VeganRecipes.git recipes/",
+            "bin/console build"
+        ]
     }
 }
