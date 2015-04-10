@@ -22,5 +22,8 @@
     "gulp": "3.8.*",
     "napa": "1.2.*",
     "zurb-foundation-5": "^5.4.7"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/gulp install"
   }
 }
