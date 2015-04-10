@@ -18,10 +18,12 @@
         {% endfor %}
     </div>
 
-    <p style="margin-top: 2em;">
-        Find also recipes in:&nbsp;
-        {% for lang in langs %}
-            <a href="/{{ lang }}/{{ recipes[lang]['name'] }}">{{ lang|langName }}</span></a>&nbsp;
-        {% endfor %}
-    </p>
+    {% if langs|length > 0 %}
+        <p style="margin-top: 2em;">
+            Find also recipes in:&nbsp;
+            {% for lang in langs %}
+                <a href="/{{ lang }}/{{ recipes[lang]['name'] }}">{{ lang|langName }}</span></a>&nbsp;
+            {% endfor %}
+        </p>
+    {% endif %}
 {% endblock %}
