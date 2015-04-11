@@ -22,7 +22,11 @@ class TranslationExtension extends \Twig_Extension
 
     public function trans($message, $locale = null)
     {
-        $locale = $locale !== null ? $locale : 'en';
+        if ($locale == null && !isset($this->app['locale_fallbacks'])) {
+            throw new \HttpInvalidParamException('No locale found.');
+        }
+
+        $locale = $locale !== null ? $locale : $this->app['locale_fallbacks'];
         $this->app['translator']->setLocale($locale);
 
         return $this->app['translator']->trans($message);
