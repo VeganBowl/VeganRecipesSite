@@ -20,16 +20,13 @@ class TranslationExtension extends \Twig_Extension
         );
     }
 
-    public function trans($message, $locale = null)
+    public function trans($message, array $params = [], $locale = null)
     {
-        if ($locale == null && !isset($this->app['locale_fallbacks'])) {
-            throw new \HttpInvalidParamException('No locale found.');
-        }
+        $locale = $locale ?: $this->app['locale'];
+        $locale = $locale ?: $this->app['locale_fallbacks'];
 
-        $locale = $locale !== null ? $locale : $this->app['locale_fallbacks'];
-        $this->app['translator']->setLocale($locale);
-
-        return $this->app['translator']->trans($message);
+//        $this->app['translator']->setLocale($locale);
+        return $this->app['translator']->trans($message, $params, null, $locale);
     }
 
     public function getName()

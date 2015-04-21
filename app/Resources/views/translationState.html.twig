@@ -104,13 +104,13 @@
 {% endblock %}
 
 {% block main %}
-    <h1>{{ 'menu.translation_state'|trans(lang) }}</h1>
+    <h1>{{ 'menu.translation_state'|trans }}</h1>
 
     <table>
         <thead>
             <tr>
                 <td>
-                    {{ 'interface.recipe_name'|trans(lang) }}
+                    {{ 'interface.recipe_name'|trans }}
                 </td>
                 {% for lang in langs %}
                     <td>
@@ -123,7 +123,7 @@
         <tbody>
             {% for recipe in recipes %}
                 <tr>
-                    <td>{{ recipe[lang]['title'] }}</td>
+                    <td>{{ recipe[app.locale]['title'] }}</td>
                     {% for lang in langs %}
                         <td>
                             {% if recipe[lang] is defined %}<strong>&times;</strong>{% endif %}
