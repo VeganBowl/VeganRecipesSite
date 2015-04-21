@@ -14,7 +14,7 @@
 {% block body %}
     <div class="contentWrapper">
         <header>
-            <a href="{{ base_url }}/{{ lang }}/index.html">
+            <a href="{{ base_url }}/{{ app.locale }}/index.html">
                 <img src="/assets/images/bowl.png" alt=""/>
                 <h1>VeganBowl recipes</h1>
             </a>
@@ -22,9 +22,9 @@
 
         <nav>
             <ul>
-                <li><a class="button--link" href="/{{ lang }}/index.html">Recipes</a></li>
-                <li><a class="button--link" href="#">Contribute</a></li>
-                <li><a class="button--link" href="/{{ lang }}/translation-state.html">Translation state</a></li>
+                <li><a class="button--link" href="/{{ app.locale }}/index.html">{{ 'menu.recipes'|trans }}</a></li>
+                <li><a class="button--link" href="#">{{ 'menu.contribute'|trans }}</a></li>
+                <li><a class="button--link" href="/{{ app.locale }}/translation-state.html">{{ 'menu.translation_state'|trans }}</a></li>
             </ul>
         </nav>
 

@@ -5,7 +5,7 @@
 
     {% if langs|length > 0 %}
     <p>
-        Find also this recipe in:&nbsp;
+        {{ 'interface.find_this_recipe_in'|trans }}&nbsp;
         {% for lang in langs %}
             <a href="/{{ lang }}/{{ recipes[lang]['name'] }}/index.html">{{ lang|langName }}</span></a>&nbsp;
         {% endfor %}
@@ -25,19 +25,19 @@
         <div class="medium-4 column" style="padding-right: 0;">
             <div class="sticker">
                 <div class="sticker__content">{{ meta.cooking_time }} min.</div>
-                <div class="sticker__head">Cooking Time</div>
+                <div class="sticker__head">{{ 'interface.recipe.cooking_time'|trans }}</div>
             </div>
             <div class="sticker">
                 <div class="sticker__content">{{ meta.preparation_time }} min.</div>
-                <div class="sticker__head">Preparation Time</div>
+                <div class="sticker__head">{{ 'interface.recipe.preparation_time'|trans }}</div>
             </div>
             <div class="sticker">
                 <div class="sticker__content">{{ meta.nb_persons }} pers.</div>
-                <div class="sticker__head">Serves</div>
+                <div class="sticker__head">{{ 'interface.recipe.serves'|trans }}</div>
             </div>
             <div class="sticker">
                 <div class="sticker__content">{{ meta.price_per_person }}</div>
-                <div class="sticker__head">Average price per person</div>
+                <div class="sticker__head">{{ 'interface.recipe.price_per_person'|trans }}</div>
             </div>
         </div>
     </div>

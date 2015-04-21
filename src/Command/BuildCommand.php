@@ -56,7 +56,7 @@ class BuildCommand extends Command
             foreach ($recipeFinder as $recipeFile) {
                 $fileName = pathinfo($recipeFile->getRealpath())['basename'];
 
-                if (preg_match('#index.([a-z]+).md#', $fileName, $match)) {
+                if (preg_match('#index\.([a-z]+)\.md#', $fileName, $match)) {
                     $lang = $match[1];
                     $recipes[$recipeGenericName][$lang] = [
                         'file'  => $recipeFile,
@@ -67,6 +67,7 @@ class BuildCommand extends Command
 
             // Generate recipe in all languages
             foreach ($recipes[$recipeGenericName] as $lang => $recipeFile) {
+                $container['locale'] = $lang;
                 $allLangs[] = $lang;
 
                 $mainPicture = null;
@@ -94,9 +95,9 @@ class BuildCommand extends Command
                     'content'       => $data['content'],
                     'meta'          => $data['frontMatter'],
                     'langs'         => $langs,
-                    'lang'          => $lang,
                     'recipes'       => $recipes[$recipeGenericName],
                     'mainPicture'   => $mainPicture,
+                    'app'           => $container,
                 ]);
 
                 $recipes[$recipeGenericName][$lang]['title'] = $data['frontMatter']['title'];
@@ -109,6 +110,8 @@ class BuildCommand extends Command
 
             // Homes generation
             foreach ($allLangs as $lang) {
+                $container['locale'] = $lang;
+
                 $otherLanguages = $allLangs;
                 unset($otherLanguages[array_search($lang, $otherLanguages)]);
 
@@ -121,17 +124,19 @@ class BuildCommand extends Command
 
                 $fs->dumpFile($container['build_dir'].'/'.$lang.'/index.html', $container['twig']->render('index.html.twig', [
                     'recipes'   => $recipesForThisLang,
-                    'lang'      => $lang,
                     'langs'     => $otherLanguages,
+                    'app'       => $container,
                 ]));
             }
 
             // Translation pages generation
             foreach ($allLangs as $lang) {
+                $container['locale'] = $lang;
+
                 $fs->dumpFile($container['build_dir'].'/'.$lang.'/translation-state.html', $container['twig']->render('translationState.html.twig', [
                     'recipes'   => $recipes,
-                    'lang'      => $lang,
                     'langs'     => $allLangs,
+                    'app'       => $container,
                 ]));
             }
         }
