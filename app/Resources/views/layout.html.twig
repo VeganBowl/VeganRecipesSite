@@ -28,7 +28,7 @@
             </ul>
         </nav>
 
-        <main>
+        <main {% if main_item_type is not empty %}itemscope itemtype="{{ main_item_type }}"{% endif %}>
             {% block main %}{% endblock %}
         </main>
 

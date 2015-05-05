@@ -1,7 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% set main_item_type = "http://schema.org/Recipe" %}
+
 {% block main %}
-    <h1>{{ meta.title }}</h1>
+    <meta itemprop="inLanguage" content="{{ app.locale }}">
+    <h1 itemprop="name">{{ meta.title }}</h1>
 
     {% if langs|length > 0 %}
     <p>
@@ -15,24 +18,30 @@
     <div class="row">
         <div class="medium-8 column" style="padding-left: 0;">
             {% if mainPicture is defined %}
-                <img class="card" src="{{ mainPicture }}" alt=""/>
+                <img itemprop="image" class="card" src="{{ mainPicture }}" alt=""/>
             {% endif %}
 
-            <div class="recipe">
+            <div itemprop="recipeInstructions" class="recipe">
                 {{ content|raw }}
             </div>
         </div>
         <div class="medium-4 column" style="padding-right: 0;">
             <div class="sticker">
-                <div class="sticker__content">{{ meta.cooking_time }} min.</div>
+                <div class="sticker__content">
+                    <meta itemprop="cookTime" content="PT{{ meta.cooking_time }}M">
+                    {{ meta.cooking_time }} min.
+                </div>
                 <div class="sticker__head">{{ 'interface.recipe.cooking_time'|trans }}</div>
             </div>
             <div class="sticker">
-                <div class="sticker__content">{{ meta.preparation_time }} min.</div>
+                <div class="sticker__content">
+                    <meta itemprop="prepTime" content="PT{{ meta.preparation_time }}M">
+                    {{ meta.preparation_time }} min.
+                </div>
                 <div class="sticker__head">{{ 'interface.recipe.preparation_time'|trans }}</div>
             </div>
             <div class="sticker">
-                <div class="sticker__content">{{ meta.nb_persons }} pers.</div>
+                <div itemprop="recipeYield" class="sticker__content">{{ meta.nb_persons }} pers.</div>
                 <div class="sticker__head">{{ 'interface.recipe.serves'|trans }}</div>
             </div>
             <div class="sticker">
