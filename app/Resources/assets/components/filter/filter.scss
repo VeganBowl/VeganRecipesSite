@@ -1,0 +1,109 @@
+/**
+ *  Filters
+ */
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PARAMETERS
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------------------------
+  PLACEHOLDERS
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------------------------
+  MIXINS
+-------------------------------------------------------------------------------------------------------------------- */
+
+
+/* --------------------------------------------------------------------------------------------------------------------
+  RULES
+-------------------------------------------------------------------------------------------------------------------- */
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    width: 0;
+    font-size: 0.3em;
+  }
+  20% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+  80% {
+    font-size: 1em;
+  }
+  100% {
+    opacity: 1;
+    width: 33%;
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    opacity: 1;
+    width: 33%;
+    font-size: 0.3em;
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+  100% {
+    opacity: 0;
+    width: 0;
+  }
+}
+
+.filterable {
+  -webkit-animation-duration: 0.6s;
+  animation-duration: 0.6s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  &.filter-visible {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+//    display: inline-block;
+  }
+
+  &.filter-hidden {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+//    display: none;
+  }
+}
+
+
+.select-style {
+  border: 1px solid #ccc;
+  width: 120px;
+  border-radius: 3px;
+  overflow: hidden;
+//  background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+  padding: 5px 8px;
+  width: 130%;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  background-image: none;
+  -webkit-appearance: none;
+}
+
+.select-style select:focus {
+  outline: none;
+}
+
+.select-style select::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%; margin-top: -.5em;
+}

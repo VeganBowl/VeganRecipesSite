@@ -36,4 +36,8 @@ header {
 
         display: inline-block;
     }
+
+    a, a:hover, a:visited, a:focus {
+      text-decoration: none;
+    }
 }

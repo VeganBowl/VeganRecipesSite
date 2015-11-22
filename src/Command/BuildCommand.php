@@ -72,15 +72,13 @@ class BuildCommand extends Command
 
                 $mainPicture = null;
                 if ($fs->exists($recipePath.'/main.jpg')) {
+                    $mainPicture = 'main.jpg';
 
                     $imagine = new Imagine();
-                    $image = $imagine->open($recipePath.'/main.jpg');
-                    $thumbnail = $image->thumbnail(new Box(900, 600), ImageInterface::THUMBNAIL_OUTBOUND);
+                    $image = $imagine->open($recipePath.'/'.$mainPicture);
+                    $thumbnail = $image->resize(new Box(900, 600));
                     $fs->mkdir($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname());
-                    $thumbnail->save($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/main.jpg');
-
-//                    $fs->copy($recipePath.'/main.jpg', $container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/main.jpg');
-                    $mainPicture = 'main.jpg';
+                    $thumbnail->save($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/'.$mainPicture);
 
                     $recipes[$recipeGenericName][$lang]['mainPicture'] = $mainPicture;
                 }
@@ -101,6 +99,7 @@ class BuildCommand extends Command
                 ]);
 
                 $recipes[$recipeGenericName][$lang]['title'] = $data['frontMatter']['title'];
+                $recipes[$recipeGenericName][$lang]['tags'] = $data['frontMatter']['tags'];
 
                 $fs->mkdir($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname(), 0777);
                 $fs->dumpFile($container['build_dir'].'/'.$lang.'/'.$recipeDir->getRelativePathname().'/index.html', $html);
@@ -126,6 +125,7 @@ class BuildCommand extends Command
                     'recipes'   => $recipesForThisLang,
                     'langs'     => $otherLanguages,
                     'app'       => $container,
+                    'tags'      => ['dessert', 'muffin', 'chocolate']
                 ]));
             }
 

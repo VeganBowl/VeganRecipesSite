@@ -2,8 +2,9 @@
   "name": "VeganRecipesSite",
   "private": true,
   "dependencies": {
+    "font-awesome": "~4.3.0",
     "jquery": "2.1.*",
-    "font-awesome": "~4.3.0"
+    "mustache": "^2.0.0"
   },
   "napa": {},
   "browser": {},
@@ -11,19 +12,12 @@
   "scripts": {
     "install": "napa"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
+  "browserify": {},
   "devDependencies": {
     "browserify-shim": "3.8.*",
     "elao-assets-gulp": "Elao/node-module-assets-gulp#0.2",
     "gulp": "3.8.*",
     "napa": "1.2.*",
     "zurb-foundation-5": "^5.4.7"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/.bin/gulp install"
   }
 }

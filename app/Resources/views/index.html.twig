@@ -3,12 +3,14 @@
 {% block main %}
     <h1>{{ 'menu.recipes'|trans }}</h1>
 
-    <div class="row">
+    <div class="filterContainer"></div>
+
+    <div class="row filterableContainer">
         {% for recipe in recipes %}
-            <article style="box-sizing: border-box;width: 33%;float: left;padding: 0 1em 0 0;">
+            <article class="filterable" data-filter-tag='{{ recipe[app.locale]['tags']|json_encode|raw }}' style="box-sizing: border-box;width: 33%;float: left;padding: 0 1em 0 0;">
                 <div class="card">
-                    <div class="card__title" style="background-color: white;">
-                        <a style="width: 100%;padding: 0;" class="button--link" href="/{{ app.locale }}/{{ recipe[app.locale]['name'] }}/">{{ recipe[app.locale]['title'] }}</a>
+                    <div class="card__title" style="background-color: white;padding: 0;height: 6em;line-height: 6em;">
+                        <a style="line-height: 1.5;vertical-align: middle;height: auto;" class="button--link" href="/{{ app.locale }}/{{ recipe[app.locale]['name'] }}/">{{ recipe[app.locale]['title'] }}</a>
                     </div>
                     <div class="card__container">
                         <img src="/{{ app.locale }}/{{ recipe[app.locale]['name'] }}/{{ recipe[app.locale]['mainPicture'] }}" alt=""/>
@@ -26,4 +28,10 @@
             {% endfor %}
         </p>
     {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+
+    <script src="/assets/js/filter.js"></script>
 {% endblock %}
